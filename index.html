@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .titulo {
+        font-family: 'Press Start 2P', cursive;
+      }
+      body {
+        font-family: 'Encode Sans Semi Condensed', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-pink-200">
+    <p class="absolute right-10 top-5">@eagleangel</p>
+    <div class="w-screen h-screen flex justify-center items-center">
+      <div
+        class="w-10/12 h-auto bg-gray-400 p-10 rounded-sm flex flex-col justify-center items-center mx-auto relative"
+      >
+        <h1
+          class="titulo text-center text-3xl md:text-6xl mt-6 text-black cursor-default"
+        >
+          Quitar espacios
+        </h1>
+        <form class="mt-10 w-10/12">
+          <p class="text-3xl p-5 text-center text-gray-900 cursor-default">
+            Pega tu codigo:
+          </p>
+          <textarea
+            class="w-full h-20 transition delay-75 duration-500 border-solid border-2 border-gray-900 bg-gray-700 text-white rounded-md focus:outline-none hover:bg-gray-300 hover:text-black"
+            type="text"
+            name="codigo"
+            id="codigo"
+          ></textarea>
+          <br />
+          <!-- <input type="submit" value="Enviar"> -->
+          <div class="w-full flex justify-center items-center mt-5">
+            <button
+              class="transition delay-75 duration-500 bg-green-400 px-8 py-2 focus:outline-none hover:bg-red-400 border-2 border-solid border-transparent shadow-lg hover:shadow-xl transform hover:scale-110 motion-reduce:transform-none"
+              type="button"
+              onclick="data()"
+            >
+              Ejecutar
+            </button>
+          </div>
+        </form>
+        <p class="text-3xl text-gray-800 mt-5 cursor-default">Resultado:</p>
+        <textarea
+          class="w-full h-20 mt-5 transition delay-75 duration-500 border-solid border-2 border-gray-900 bg-gray-700 text-white rounded-md focus:outline-none hover:bg-gray-300 hover:text-black outputString"
+          type="text"
+          name="codigo"
+          id="texto"
+        ></textarea>
+        <div class="w-full flex justify-center items-center mt-5">
+          <button
+            class="transition delay-75 duration-500 bg-pink-400 mx-2 px-8 py-2 focus:outline-none hover:bg-purple-400 border-2 border-solid border-transparent shadow-lg hover:shadow-xl transform hover:scale-110 motion-reduce:transform-none"
+            type="button"
+            onclick="reset()"
+          >
+            Reset
+          </button>
+          <button
+            class="transition delay-75 duration-500 bg-blue-400 mx-2 px-8 py-2 focus:outline-none hover:bg-purple-400 border-2 border-solid border-transparent shadow-lg hover:shadow-xl transform hover:scale-110 motion-reduce:transform-none"
+            type="button"
+            onclick="portapapeles()"
+          >
+            Copear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function data() {
+        let form = document.querySelector('form');
+        let codigo = document.getElementById('codigo').value;
+        document.querySelector('.outputString').textContent = '';
+
+        // var expresionRegular = /\s*;\s*/;
+
+        let first = codigo.replace(/\s+/g, '');
+        // console.log(first)
+        document.querySelector('.outputString').textContent = first;
+
+        form.reset();
+      }
+      function portapapeles() {
+        let texto = document.getElementById('texto');
+        texto.select();
+        texto.setSelectionRange(0, 999999);
+        document.execCommand('copy');
+      }
+      function reset() {
+        document.querySelector('.outputString').textContent = '';
+      }
+    </script>
+  </body>
+</html>
